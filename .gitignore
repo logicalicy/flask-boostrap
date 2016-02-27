@@ -2,6 +2,7 @@
 *.pyc
 
 # virtualenv
+venv
 .Python
 [Bb]in
 [Ii]nclude
