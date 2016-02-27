@@ -2,12 +2,15 @@
 
 A Flask app that can be used as a foundation for small projects (created initially by following [Mongo's Tumblelog tutorial](https://docs.mongodb.org/ecosystem/tutorial/write-a-tumblelog-application-with-flask-mongoengine/)).
 
+[`flask-login`](https://github.com/maxcountryman/flask-login) was added to this project by following hints from [this article](https://runningcodes.net/flask-login-and-mongodb/).
+
 Using:
 * `flask`
 * `flask-script`
 * `WTForms`
 * `mongoengine`
 * `flask_mongoengine`
+* `flask-login`
 
 ## Installation
 

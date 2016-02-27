@@ -1,16 +1,15 @@
 from flask import Blueprint, request, redirect, render_template, url_for
 from flask.views import MethodView
-
+from flask.ext.login import login_required
 from flask.ext.mongoengine.wtf import model_form
 
-from flask_bootstrap.auth import requires_auth
-from flask_bootstrap.models import Post, Comment
+from app.posts.models import Post, Comment
 
 admin = Blueprint('admin', __name__, template_folder='templates')
 
 
 class List(MethodView):
-    decorators = [requires_auth]
+    decorators = [login_required]
     cls = Post
 
     def get(self):
@@ -20,7 +19,7 @@ class List(MethodView):
 
 class Detail(MethodView):
 
-    decorators = [requires_auth]
+    decorators = [login_required]
 
     def get_context(self, slug=None):
         form_cls = model_form(Post, exclude=('created_at', 'comments'))

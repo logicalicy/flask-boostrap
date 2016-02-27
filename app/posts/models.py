@@ -1,6 +1,6 @@
 import datetime
 from flask import url_for
-from flask_bootstrap import db
+from app import db
 
 
 class Comment(db.EmbeddedDocument):

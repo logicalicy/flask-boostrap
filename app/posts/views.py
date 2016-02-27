@@ -1,12 +1,15 @@
 from flask import Blueprint, request, redirect, render_template, url_for
 from flask.views import MethodView
+from flask.ext.login import login_required
 from flask.ext.mongoengine.wtf import model_form
-from flask_bootstrap.models import Post, Comment
+from app.posts.models import Post, Comment
 
 posts = Blueprint('posts', __name__, template_folder='templates')
 
 
 class ListView(MethodView):
+
+    decorators = [login_required]
 
     def get(self):
         posts = Post.objects.all()
@@ -15,6 +18,7 @@ class ListView(MethodView):
 
 class DetailView(MethodView):
 
+    decorators = [login_required]
     form = model_form(Comment, exclude=['created_at'])
 
     def get_context(self, slug):
@@ -49,5 +53,5 @@ class DetailView(MethodView):
 
 
 # Register the urls
-posts.add_url_rule('/', view_func=ListView.as_view('list'))
-posts.add_url_rule('/<slug>/', view_func=DetailView.as_view('detail'))
+posts.add_url_rule('/posts', view_func=ListView.as_view('list'))
+posts.add_url_rule('/posts/<slug>/', view_func=DetailView.as_view('detail'))
